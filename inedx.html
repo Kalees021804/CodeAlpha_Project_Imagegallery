@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=devOne Piece-width, initial-scale=1.0">
+    <title>Photo Gallery</title>
+</head>
+<body>
+    <main>
+        <div class="heading">
+            <h1 class="title">Anime Gallery</h1>
+            <div class="search-box">
+                <select id="categoryFilter" class="filter-dropdown">
+                    <option value="all">All</option>
+                    <option value="dragon">Dragon Ball</option>
+                    <option value="one">One Piece</option>
+                    <option value="naruto">Naruto</option>
+                    <option value="aot">AOT</option>
+                    <option value="Demon">Demon Slayer</option>
+                </select>
+            </div>
+        </div>
+        <div class="gallery-container">
+            <div class="gallery" id="photo">
+                <ul>
+                    <!-- Dragon Ball -->
+                    <li class="gallery-item dragon"><img src="photo/dragon1.jpeg" alt="DragonBall 1"></li>
+                    <li class="gallery-item dragon"><img src="photo/dragon2.jpeg" alt="DragonBall 2"></li>
+                    <li class="gallery-item dragon"><img src="photo/dragon3.jpeg" alt="DragonBall 3"></li>
+
+                    <!-- One Piece -->
+                    <li class="gallery-item one"><img src="photo/one1.jpeg" alt="one 1"></li>
+                    <li class="gallery-item one"><img src="photo/one2.jpeg" alt="one 2"></li>
+                    <li class="gallery-item one"><img src="photo/one3.jpeg" alt="one 3"></li>
+
+                    <!-- Naruto -->
+                    <li class="gallery-item naruto"><img src="photo/naruto1.jpeg" alt="naruto 1"></li>
+                    <li class="gallery-item naruto"><img src="photo/naruto2.jpeg" alt="naruto 2"></li>
+                    <li class="gallery-item naruto"><img src="photo/naruto3.jpeg" alt="naruto 3"></li>
+
+                    <!-- AOT -->
+                    <li class="gallery-item aot"><img src="photo/aot1.jpeg" alt="AOT 1"></li>
+                    <li class="gallery-item aot"><img src="photo/aot2.jpeg" alt="AOT 2"></li>
+                    <li class="gallery-item aot"><img src="photo/aot3.jpeg" alt="AOT 3"></li>
+
+                    <!-- demon -->
+                    <li class="gallery-item Demon"><img src="photo/demon1.jpeg" alt="Demon Slayer 1"></li>
+                    <li class="gallery-item Demon"><img src="photo/demon2.jpeg" alt="Demon Slayer 2"></li>
+                    <li class="gallery-item Demon"><img src="photo/demon3.jpeg" alt="Demon Slayer 3"></li>
+                </ul>
+            </div>
+        </div>
+    </main>
+    <style>
+        body {
+            font-family: 'Anton', sans-serif;
+            background-color: orange;
+            margin: 0;
+            padding: 0;
+        }
+
+        .heading {
+            text-align: center;
+            padding: 20px 0;
+            background-color: brown;
+            color: #fff;
+        }
+
+        .title {
+            font-size: 1.5rem;
+        }
+
+        .filter-dropdown {
+            padding: 10px;
+            font-size: 1rem;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+
+        .gallery-container {
+            padding: 20px;
+        }
+
+        .gallery ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .gallery-item {
+            display: none; /* Hide all images by default */
+            margin: 10px;
+            width: 250px;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .gallery-item img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Default to show all images */
+        .gallery-item.all {
+            display: block;
+        }
+
+        /* Show images based on selected category */
+        .gallery-item.show {
+            display: block;
+        }
+    </style>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const categoryFilter = document.getElementById("categoryFilter");
+            const galleryItems = document.querySelectorAll(".gallery-item");
+
+            categoryFilter.addEventListener("change", function () {
+                const selectedCategory = this.value;
+
+                galleryItems.forEach(function (item) {
+                    if (selectedCategory === "all" || item.classList.contains(selectedCategory)) {
+                        item.classList.add("show");
+                    } else {
+                        item.classList.remove("show");
+                    }
+                });
+            });
+
+            // Trigger the change event to show the default (all images)
+            categoryFilter.dispatchEvent(new Event("change"));
+        });
+    </script>
+</body>
+</html>
